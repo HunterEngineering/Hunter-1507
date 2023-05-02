@@ -1,0 +1,93 @@
+<mat-dialog-content>
+
+  <table style="margin-left: 20px;">
+    <tr>
+      <td>Project Id</td>
+      <td *ngIf="projectId > 0">{{projectId}}</td>
+      <td *ngIf="projectId == -1">No Id yet</td>
+    </tr>
+    <tr>
+      <td>Connector Id</td>
+      <td *ngIf="individualConnector != ''">{{individualConnector}}</td>
+      <td *ngIf="individualConnector == ''">No ConnectorId yet</td>
+    </tr>
+    <tr>
+      <td (click)="HelpParameterId()">Parameter ID:
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td><input style="width:50px; height:23px;" type="text" id="ParameterId"
+                 [(ngModel)]="this.parameterId">
+      </td>
+    </tr>
+    <tr>
+      <td (click)="HelpName()">Name
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td><input type="text" id="ParameterName" style="margin-right:20px; width:200px;"
+                 placeholder="Parameter Name" [(ngModel)]="parameterName">
+      </td>
+    </tr>
+    <tr>
+      <td (click)="HelpParmType()">Parm Type
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td>
+        <select #parmtypes (change)="getParameterType(parmtypes.value)" name="types" id="parmTypes">
+          <option value="">none selected</option>
+          <option value="int">Integer</option>
+          <option value="long">Long Integer</option>
+          <option value="decimal">Decimal</option>
+          <option value="double">Long Decimal</option>
+          <option value="bool">Boolean (true/false)</option>
+          <option value="string">Character string</option>
+          <option value="object">Object</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td (click)="HelpParmOrder()">Order
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td>
+        <input type="text" id="ParameterOrder" style="margin-right:20px; width:200px;"
+               placeholder="Parameter Name" [(ngModel)]="parameterOrder">
+      </td>
+    </tr>
+    <tr>
+      <td (click)="HelpParmNesting()">Nesting Level
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td>
+        <input id="ParameterNesting" type="check" [(ngModel)]="parameterNestingLevel">
+      </td>
+    </tr>
+    <tr>
+      <td (click)="HelpParmValue()">Value
+        <span class="material-symbols-outlined" style="transform: scale(0.7); position: relative; top: 6px;">
+            Help
+        </span>
+      </td>
+      <td><textarea id="ParameterValue" type="text"
+                style="margin-right:20px; width:400px; height: 150px;"
+                placeholder="details of connector parameter"
+                [(ngModel)]="parameterValue" ></textarea>
+      </td>
+    </tr>
+  </table>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" style="margin-bottom: 20px; margin-left: 40px;" (click)="Save()">Save</button>
+  <button class="mat-raised-button" style="margin-bottom: 20px; margin-left: 40px;" (click)="Close()">Exit</button>
+</mat-dialog-actions>

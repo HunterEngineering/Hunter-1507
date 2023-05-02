@@ -1,0 +1,35 @@
+<div class=workspace style="color: white;">
+    <div class="container-fluid workspace" style="color: white;">
+        <div class="row justify-content: center; height: 100vh; z-index:5">
+            <div class="col-md-10 ml-2">
+                <table class="table" 
+                style="color:white; background-color:rgb(128, 37, 37);  opacity: .8; margin-left:50px; margin-top: 40px; ">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>User Name</th>
+                            <th>Known As</th>
+                            <th>Email Address</th>
+                            <th>Phone</th>
+                            <th><button class="btn btn-warning" type="button" (click)="cancel()">Cancel</button> </th>
+
+                        </tr>
+                    </thead>
+                    <tbody style="overflow-y: auto;">
+                        <tr *ngFor="let p of usersList" >
+                            <td>{{p.id}}</td>
+                            <td>{{p.userName}}</td>
+                            <td>{{p.knownAs}}</td>
+                            <td>{{p.email}}</td>
+                            <td>{{p.phone}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm"  (click)="UserSelected(p.id)">Select</button>
+                                <button type="button" class="btn btn-danger btn-sm ms-4" (click)="UserDelete(p.id)">Delete</button>                        
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</div>

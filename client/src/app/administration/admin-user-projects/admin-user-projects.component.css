@@ -1,0 +1,26 @@
+body, html {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    overflow: hidden;
+    min-width: 1170px;
+  }
+  
+  .workspace {
+      background: url('/assets/Images/tiger_animal_wildlife.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-position: 0px 64px;
+    
+      position: fixed;
+      height: 93vh;
+      width: 100%;
+    }
+  
+    ::ng-deep .mat-tab-labels > .mat-tab-label:first-child {
+      display: none;
+    }
+    
+  td {
+    padding-left: 10px;  
+  }  
+    

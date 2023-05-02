@@ -1,0 +1,142 @@
+<div class="workspace" style="overflow-y: scroll;">
+    <h2 style="margin-left: 10px; color:aliceblue ">PROJECT - {{researchType}}</h2>
+
+    <table style="margin-left: 80px; background-color:bisque; width: 700px;">
+        <tr>
+            <br />
+        </tr>
+
+        <tr *ngIf="this.projectId > 0">
+            <td>Update Mode Entered</td>
+            <td>ID: {{this.projectId}}</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input type="text" id="TitleEntry" style="margin-right:20px; width:200px;"
+                placeholder="Unique Project Title" [(ngModel)]="projectDto.title">
+            </td>
+        </tr>
+        <tr>
+            <td>Description</td>
+             <!-- <mat-form-field></textarea></mat-form-field> </td> -->
+            <td><textarea id="Description" type="text"
+                style="margin-right:20px; width:350px; height: 100px;"
+                placeholder="brief overview of the purpose of this research" [(ngModel)]="projectDto.description" ></textarea></td>
+        </tr>
+
+        <tr *ngIf="this.checkToNOTSave">
+            <button class="mat-raised-button mt-2 ms-3 mb-3" 
+            style="background-color:rgb(255, 89, 0); color: black;"
+             (click)="DontSAVE()">SAVE Project or Press This to NOT save</button>
+        </tr>
+
+        <tr *ngIf="this.projectId > 0">
+            <td>Solution Hunter Type</td>
+            <td>{{individualConnector}}</td>
+        </tr>
+    </table>
+    <table class="mb-4" style="margin-left: 80px; background-color:bisque; width: 700px;">
+        <colgroup>
+            <col span="1" style="width:250px;">
+            <col span="1" style="width:30px;">
+            <col span="4" style="width:150px;">
+        </colgroup>
+        <tr>
+            <td style="width:150px;">Project Type:</td>
+            <td>
+                <select [(ngModel)]="projectDto.solutionType" size="6">
+                    <option value="TestRoot">Test - Binary Root</option>
+                    <option value="TestSalesman">Test - Traveling Salesman</option>
+                    <option value="WeatherLocal">Weather - Local</option>
+                    <option value="WeatherState">Weather - State</option>
+                    <option value="WeatherNational">Weather - National</option>
+                    <option value="OrganicChemistry">Organic Chemistry</option>
+                    <option value="InOrganicChemistry">InOrganic Chemistry</option>
+                    <option value="MaterialDesign">Physics - Material Design</option>
+                    <option value="DiabetesMedicine">Medicine - Diabetes</option>
+                    <option value="COVIDMedicine">Medicine - COVID</option>
+                    <option value="ArthrytisMedicine">Medicine - Arthrytis</option>
+                    <option value="FluMedicine">Medicine - Flu</option>
+                    <option value="CancerMedicine">Medicine - Cancer</option>
+                </select>
+            </td>
+            <td >
+                <p style="margin-left:20px; width: 200px;">Current Selection {{projectDto.solutionType}}</p>
+            </td>
+        </tr>
+        <tr>
+            <br />
+        </tr>
+    </table>
+
+    <h5 *ngIf="isDeveloper || isAdmin" style="margin-left: 80px; color:aqua;">Advanced Settings (Developers and Admins)</h5>
+    <button *ngIf="isDeveloper || isAdmin" type="button" class="btn btn-success ms-5" (click)="toggleGhostPopulation()">Show Ghosting/Population</button>
+    <button *ngIf="isDeveloper || isAdmin" type="button" class="btn btn-success ms-5" (click)="toggleFeatures()">Show Features</button>
+    <button *ngIf="isDeveloper || isAdmin" type="button" class="btn btn-success ms-5" (click)="toggleEvaluators()">Show Evaluators</button>
+
+    <table *ngIf="(isDeveloper || isAdmin) && isGhostPopulation" class="mb-4" style="margin-left: 80px; background-color:bisque; width: 700px;">
+        <tr>
+            <td><input type="checkbox" value=false style="margin-left:25px" [(ngModel)]="projectDto.isGhosting"> Is Ghosting Allowed</td>
+            <td>Number of Ghosts <input type="text" placeholder="integer" size="4"
+                 style="height: 20px;" [(ngModel)]="projectDto.sizeOfGhostPopulation"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value=false style="margin-left:25px;"
+                [(ngModel)]="projectDto.amIaGhost"> This project is a Ghost</td>
+            <td>If I am a ghost <input type="text" placeholder="Body-Id" size="5" 
+                style="height: 20px;" [(ngModel)]="projectDto.idOfMyBody"></td>
+        </tr>
+        <tr>
+            <td><input type="text" style="margin-left:25px; height: 20px;" size="2"
+                [(ngModel)]="projectDto.ghostingStart"> Generation ghosting starts</td>
+            <td><input type="text" size="2" style="height: 20px;"
+                [(ngModel)]="projectDto.ghostLifespan"> Lifespan of a ghost</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value=false style="margin-left:25px;"
+                [(ngModel)]="projectDto.isGhostingStagger"> Are Ghosts Staggered</td>
+            <td>Stagger Interval <input type="text" size="2" 
+                [(ngModel)]="projectDto.staggerInterval" style="height: 20px;"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" value=false style="margin-left:25px;"
+                [(ngModel)]="projectDto.isPopulationMixVariable"> Is Population Mix Variable</td>
+            <td>Varies by % <input type="text" size="2" style="height: 20px;"
+                [(ngModel)]="projectDto.popMixVariesByPercent"></td>
+        </tr>
+        <tr>
+            <td><input type="text" size="2" style="margin-left:25px; height: 20px;"
+                [(ngModel)]="projectDto.popSize">Population Size </td>
+            <td><input type="checkbox" value=false
+                [(ngModel)]="projectDto.isPopulationSizeVariable"> Is Pop. Size Variable</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Pop. Can Vary up to % <input type="text" size="2" style="height: 20px;"
+                    [(ngModel)]="projectDto.popSizeVariance"></td>
+        </tr>
+    </table>
+
+    <table *ngIf="(isDeveloper || isAdmin) && isShowFeatures" class="mb-4" style="margin-left: 80px; background-color:bisque; width: 700px;">
+        <tr><td>testFeatures</td></tr>
+        <tr><td>testFeatures</td></tr>
+        <tr><td>testFeatures</td></tr>
+    </table>
+
+    <table *ngIf="(isDeveloper || isAdmin) && isShowEvaluators" class="mb-4" style="margin-left: 80px; background-color:bisque; width: 700px;">
+        <tr><td>testEvaluators</td></tr>
+        <tr><td>testEvaluators</td></tr>
+        <tr><td>testEvaluators</td></tr>
+    </table>
+
+    <div style="margin-left: 160px; margin-top: 20px;">
+        <button class="mat-raised-button"
+                style="margin-bottom: 20px; margin-left: 140px; background-color:chartreuse; color: black;" 
+                data-cy="NewProjSave" (click)="Save()">Save</button>
+        <button class="mat-raised-button"
+                style="margin-bottom: 20px; margin-left: 40px; background-color:chartreuse; color: black;" 
+                data-cy="NewProjExit" (click)="Close()">Exit</button>
+    </div>
+    <hr>
+    <hr>
+</div>

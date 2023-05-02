@@ -1,0 +1,31 @@
+<div class=workspace style="color: white;">
+
+    <div class="container-fluid workspace" style="color: white;">
+        <div class="row justify-content: center; height: 100vh; z-index:5">
+            <div class="col-md-10 ml-2">
+                <table class="table" 
+                    style="color:white; background-color:rgb(128, 37, 37); margin-left:50px; margin-top: 40px; overflow-y: auto">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of projectList" >
+                            <td>{{p.id}}</td>
+                            <td>{{p.title}}</td>
+                            <td>{{p.description}}</td>
+                        <td>
+                                <button type="button" class="btn btn-warning btn-sm"  (click)="ProjectTypeSelected(p.id)">Select</button>
+                                <button type="button" class="btn btn-danger btn-sm ms-4" (click)="ProjectTypeDelete(p.id)">Delete</button>                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

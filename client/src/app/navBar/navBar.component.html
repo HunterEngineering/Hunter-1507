@@ -1,0 +1,140 @@
+<mat-toolbar style="background-color: #0a5746; display: flex; flex-direction: row;" data-cy="Navbar">
+  <span class="col-xm-2 ">
+    <a style="color: white" (click)="logout()">Solution Hunter</a>
+  </span>
+
+  <div class="btn-group" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('loggedIn') == false">
+    <button [matMenuTriggerFor]="OverviewMenu" cy-data="OverviewMenu" class="MenuItems navBarStyle" mat-raised-button >
+      Overview
+    </button>
+    <mat-menu #OverviewMenu="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="/whatshunter">What is Hunter</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/hardproblem">Some Types of 'Hard' Problems</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/usinghunter">Using Hunter</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/aiga">Artificial Intelligence</button>
+    </mat-menu>
+  </div>
+
+  <div class="btn-group" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('loggedIn') == false">
+    <button [matMenuTriggerFor]="GuidesMenu" cy-data="GuidesMenu"  class="MenuItems navbarStyle"
+          style=" background-color:#850f1a; color: white" mat-raised-button >
+      Guides
+    </button>
+    <mat-menu #GuidesMenu="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="/examples">Try Out Examples</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/tutorials">Tutorials</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/aboutResearch">Research Applications</button>
+    </mat-menu>
+  </div>
+
+  <div class="btn-group" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('loggedIn') == false">
+    <button [matMenuTriggerFor]="ContactsMenu" cy-data="ContactsMenu" class="MenuItems navBarStyle" mat-raised-button >
+      Contacts
+    </button>
+    <mat-menu #ContactsMenu="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="/aboutUs">About Us</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/contactUs">Contact Us</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/support">Support</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/consulting">
+        Consulting Services
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="btn-group col-lg-1" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('loggedIn') == false">
+    <button [matMenuTriggerFor]="SignupMenu" class="MenuItems navBarStyle" mat-raised-button >
+      SignUp
+    </button>
+    <mat-menu #SignupMenu="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="#">See your System Admin</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/contactUs">OR Click Here to contact us</button>
+    </mat-menu>
+  </div>
+
+  <!------>
+
+  <div class="btn-group ml-3 col-lg-2" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('loggedIn') && this.cache.StorageGetBool('navAdmin')">
+    <button [matMenuTriggerFor]="AdminMenu" data-cy="adminFunctions" class="MenuItems navBarStyle" mat-raised-button >
+      Administration
+    </button>
+    <mat-menu #AdminMenu="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="/adminNewUser">New User</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/adminUserProjects">User Projects</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/adminManageUser">Manage User</button>
+    </mat-menu>
+  </div>
+
+  <!------>
+
+  <div class="btn-group ml-3 col-lg-2" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('navUser') || this.cache.StorageGetBool('navDeveloper') || this.cache.StorageGetBool('navAdmin')">
+    <button [matMenuTriggerFor]="ProjDesign" data-cy="NavProjectDesign" class="MenuItems navBarStyle" mat-raised-button >
+      Project Design
+    </button>
+    <mat-menu #ProjDesign="matMenu">
+      <button class="navBarStyle" data-cy="StartNewProject" mat-menu-item routerLink="/createProject">New Project</button>
+      <button class="navBarStyle" data-cy="OpenExistProject" mat-menu-item routerLink="/projectList">Open an Existing Project</button>
+    </mat-menu>
+
+  </div>
+
+  <div class="btn-group ml-3" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('navUser') || this.cache.StorageGetBool('navDeveloper') || this.cache.StorageGetBool('navAdmin')">
+    <button [matMenuTriggerFor]="ExecProj" data-cy="executionDesktop" class="MenuItems navBarStyle" mat-raised-button >
+      Execution
+    </button>
+    <mat-menu #ExecProj="matMenu">
+      <button class="navBarStyle" data-cy="execDesktop" mat-menu-item routerLink="/execDesktop">Launch Project</button>
+      <button class="navBarStyle" data-cy="projectConfiguration" mat-menu-item routerLink="/projectConfiguration">Get Status</button>
+      <button class="navBarStyle" data-cy="projectLearning" mat-menu-item routerLink="/projectLearning">View Progress</button>
+      <button class="navBarStyle" data-cy="adminUserManage" mat-menu-item routerLink="/adminUserManage">Abort Project</button>
+    </mat-menu>
+  </div>
+
+  <div class="btn-group ml-3" style="margin-left: 20px;" *ngIf="this.cache.StorageGetBool('navDeveloper') || this.cache.StorageGetBool('navAdmin')">
+    <button [matMenuTriggerFor]="StateMach" class="MenuItems navBarStyle" mat-raised-button >
+      State Machine
+    </button>
+    <mat-menu #StateMach="matMenu">
+      <button class="navBarStyle" mat-menu-item routerLink="/adminNewUser">State Definition</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/adminNewUser">Manage State</button>
+      <button class="navBarStyle" mat-menu-item routerLink="/adminNewUser">Delete State</button>
+    </mat-menu>
+  </div>
+
+  <span class="example-spacer"></span>
+  <div style="display: inline-flex; flex-direction: row; justify-content: flex-start;">
+    <div class="ml-auto" *ngIf="(this.cache.StorageGetBool('loggedIn') == false)">
+      <form class="form-inline ml-sm-3 my-2 my-lg-0"
+          [formGroup]="loginForm" (ngSubmit)="login()" [autocomplete]= "'off'" >
+        <input id="username" class="form-control mr-sm-2 col-lg-2" data-cy="NavbarLogin" [ngStyle]="{'margin-right': '15px', 'width': '120px', 'height': '30px', 'display': 'inline-block',  'font-size': '14px'}"
+            type="text" formControlName="username" placeholder="Username" required  data-lpignore="true">
+        <input id="password" class="form-control mr-sm-2 col-lg-2"  data-cy="NavbarPassword" [ngStyle]="{'width': '120px', 'height': '30px', 'display': 'inline-block',  'font-size': '14px'}"
+            type="password" formControlName="password" placeholder="Password" required data-lpignore="true">
+
+        <button Type="submit" data-cy="LoginButton" style="margin-left: 20px;" class="MenuItems navBarStyle col-lg-2" mat-raised-button >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ml-auto" *ngIf="(this.cache.StorageGetBool('loggedIn') == true)">
+    <div style="display: inline-flex; flex-direction: row; justify-content: flex-start;">
+      <div *ngIf="welcomeName.length > 0" 
+        style="color: white; width: auto; margin-top: 6px;" data-cy="WelcomeMessage">
+        Welcome {{welcomeName | titlecase}}
+      </div>
+      <div style="color: white; width: auto; margin-top: 6px;">
+        <button type="button" data-cy="LogoutButton" (click)="logout()"
+            style="margin-left: 10px; height: 34px; width: 70px; background-color:#850f1a; color: white; border-radius: 5px; font-size: 14px;"
+             >
+          Logout
+        </button>
+
+        <button type="button" (click)="showHelp()"
+        style="background-color:#850f1a; color: white; margin-left: 20px; height: 34px; width: 70px; margin-right: 20px; border-radius: 5px; font-size: 14px;" >
+          Help
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

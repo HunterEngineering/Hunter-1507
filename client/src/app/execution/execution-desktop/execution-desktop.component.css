@@ -1,0 +1,17 @@
+body, html {
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+  overflow: hidden;
+  min-width: 1170px;
+}
+
+.workspace {
+  background: url('/assets/Images/Hand of God 2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-position: 0px 64px;
+
+  position: fixed;
+  height: 93vh;
+  width: 100%;
+}

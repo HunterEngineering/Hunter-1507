@@ -1,0 +1,172 @@
+<div class=workspace style="color: white;">
+    <div class="mt-5 ms-5">
+        <div class="container">
+            <!-- "registerForm.valid && register()" -->
+            <form  [formGroup]="registerForm" 
+                style="background-color:rgb(128, 37, 37); opacity: .8; height: 80vh; overflow-y: auto; overflow-x: hidden;" 
+                (ngSubmit)="register()" autocomplete="off">
+                    <div class="row">
+                    <br>
+                </div>
+        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="userName">Username</label>
+                        <input class="ms-3 mb-3" data-cy="userName" type="text" name="userName" [(ngModel)]="formFields.userName" formControlName="userName" />
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="knownAs">Known As</label>
+                        <input class="ms-3" type="text" data-cy="knownAs" name="knownAs" [(ngModel)]="formFields.knownAs" formControlName="knownAs" >
+                    </div>
+                </div>
+                <div class="row ms-3" *ngIf="userToUpdate == null">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="password">Password</label>
+                        <input class="ms-3" data-cy="password" type="password" name="password" [(ngModel)]="formFields.password" formControlName="password" />
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="confirmPassword">Confirm PW</label>
+                        <input class="ms-3 mb-3" data-cy="confirmPassword" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" formControlName="confirmPassword" />
+                    </div>
+                </div>        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="firstName">First Name</label>
+                        <input class="ms-3" data-cy="firstName" type="text" name="firstName" [(ngModel)]="formFields.firstName" formControlName="firstName">             
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="lastName">Last Name</label>
+                        <input class="ms-3 mb-3"  data-cy="lastName" type="text" name="lastName" [(ngModel)]="formFields.lastName" formControlName="lastName" >            
+                    </div>
+                </div>        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="phone">Phone</label>
+                        <input class="ms-3 mb-3" data-cy="phone" type="phone" name="phone" [(ngModel)]="formFields.phone" formControlName="phone" >
+                    </div>
+                </div>        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="city">City</label>
+                        <input class="ms-3" data-cy="city" type="text" name="city" [(ngModel)]="formFields.city" formControlName="city" >
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="state">State</label>
+                        <input class="ms-3 mb-3" data-cy="state" type="text" name="state" [(ngModel)]="formFields.state" formControlName="state" >
+                    </div>
+                </div>  
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="country">Country</label>
+                        <input class="ms-3 mb-3" data-cy="country" type="text" name="country" [(ngModel)]="formFields.country" formControlName="country" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <br>
+                </div>
+
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="email">EMail</label>
+                        <input class="ms-3 mb-3" data-cy="email" type="text" name="email" [(ngModel)]="formFields.email" formControlName="email" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <br>
+                </div>
+        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="cantrial">Can Trial</label>
+                        <input class="ms-3" data-cy="cantrial" type="checkbox" name="cantrial" [(ngModel)]="formFields.canTrial" formControlName="cantrial" >
+                    </div>
+                    <div class="col-5"  *ngIf="formFields.canTrial == true">
+                        <label style="width: 115px;" for="trialbegan">Trial Start</label>
+                        <input class="ms-3 mb-3" type="text" data-cy="trialbegan" name="trialbegan" [(ngModel)]="trialbegan" formControlName="trialbegan" >
+                    </div>
+                </div>  
+                <div class="row ms-3"  *ngIf="formFields.canTrial == true">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="trialend">Trial End</label>
+                        <input class="ms-3 mb-3" data-cy="trialend" type="text" name="trialend" [(ngModel)]="trialend" formControlName="trialend" >
+                    </div>
+                </div>
+
+
+                <div class="row" *ngIf="formFields.canTrial == true">
+                    <br>
+                </div>
+        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="cctypeuser">Credit Card</label>
+                        <input class="ms-3 mb-3" data-cy="cctypeuser" type="checkbox" name="cctypeuser" [(ngModel)]="formFields.ccTypeUser" formControlName="cctypeuser" >
+                    </div>
+                </div>
+                <div class="row ms-3" *ngIf="formFields.ccTypeUser == true">
+                    <div class="col-5"> 
+                        <label style="width: 115px;" for="nameOnCC">Name on Card</label>
+                        <input class="ms-3" data-cy="nameOnCC" type="text" name="nameOnCC" [(ngModel)]="formFields.nameOnCC" formControlName="nameOnCC" >
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="ccNumber">CC Number</label>
+                        <input class="ms-3 mb-3" data-cy="ccNumber" type="text" name="ccNumber" [(ngModel)]="formFields.ccNumber" formControlName="ccNumber" >
+                    </div>
+                </div>        
+                <div class="row ms-3" *ngIf="formFields.ccTypeUser == true">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="ccExpires">Expires MM/DD</label>
+                        <input class="ms-3" data-cy="ccExpires" type="text" name="ccExpires" [(ngModel)]="formFields.ccExpires" formControlName="ccExpires" >
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="ccAuthCode">Auth Code</label>
+                        <input class="ms-3 mb-3" data-cy="ccAuthCode" type="text" name="ccAuthCode" [(ngModel)]="formFields.ccAuthCode" formControlName="ccAuthCode" >
+                    </div>
+                </div>        
+        
+                <div class="row" *ngIf="formFields.ccTypeUser == true">
+                    <br>
+                </div>
+        
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="question">Question</label>
+                        <input class="ms-3" data-cy="question" type="text" name="question" [(ngModel)]="formFields.question" formControlName="question" >
+                    </div>
+                    <div class="col-5">
+                        <label style="width: 115px;" for="answer">Answer</label>
+                        <input class="ms-3 mb-3" data-cy="answer" type="text" name="answer" [(ngModel)]="formFields.answer" formControlName="answer" >
+                    </div>
+                </div> 
+
+                <div class="row">
+                    <br>
+                </div>
+                
+                <div class="row ms-3">
+                    <div class="col-5">
+                        <label style="width: 115px;" for="roles">Roles</label>
+                        <input class="ms-3 mb-3" data-cy="roles" type="text" name="roles" [(ngModel)]="formFields.roles" formControlName="roles" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <br>
+                </div>
+
+                <div class="ms-4" style="background-color:rgb(128, 37, 37); opacity: .8; color: white; font-size: large;" >
+                    <div class="text-center">
+                        <button data-cy="registerBtn" class="btn btn-success me-2" type="submit">{{RegisterOrUpdate}}</button>
+                        <button class="btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+                    </div>
+                
+                    <div class="row">
+                        <br>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>

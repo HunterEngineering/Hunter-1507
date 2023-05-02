@@ -1,0 +1,49 @@
+body, html {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    overflow: hidden;
+    min-width: 1170px;
+  }
+  
+.workspace {
+      background: url('/assets/Images/Hand of God 2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-position: 0px 64px;
+    
+      position: fixed;
+      height: 93vh;
+      width: 100%;
+    }
+
+.project-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0;
+    align-items: flex-start;
+  }
+  
+.project-radio-button {
+    margin: 0px;
+  }
+
+.helpTD {
+    position: relative; 
+    top: -5px;
+  }
+
+.helpIcon {
+    transform: scale(0.7);
+    position: relative; 
+    top: 6px;
+  }
+
+.projTypeTd {
+    padding-left: 10px; 
+    padding-right: 10px;
+}
+
+.projTypeTdTitle {
+    padding-left: 10px; 
+    padding-right: 25px;
+}

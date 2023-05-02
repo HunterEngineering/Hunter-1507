@@ -1,0 +1,60 @@
+<div class="workspace">
+  <div class="formspace" style='z-index: -1'>
+    <div class="flexRow" style="height: 5vh"></div>
+
+    <div style="margin-left: 45px;">
+
+      <form [formGroup]="contactUsForm" (ngSubmit)="submitContactUs()" autocomplete="off">
+        <div class="flexRow" style="height: 5vh"></div>
+        <div class="col-md-3 flex-column" style="height: 60vh">
+          <table style="border: none" class="table-light rounded">
+            <tr>
+              <td>
+                <div class="form-group">
+                  <input
+                    type="email" 
+                    class="form-control" 
+                    formControlName="email" 
+                    id="email" 
+                    placeholder="your email">
+                    <div style="color:tomato" *ngIf="true"
+                     >
+                        Please enter a valid email address
+                    </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="text"  
+                        class="form-control" 
+                        formControlName="phone" 
+                        id="phone" 
+                        placeholder="optional phone number"></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-group">
+                <textarea rows="6" cols="50" 
+                  [class.is-invalid]='contactUsForm.get("message")?.errors && contactUsForm.get("message")?.touched'
+                      class="rounded" 
+                      formControlName="message" 
+                      id="message" 
+                      placeholder="message"></textarea>
+                      <div style="color:tomato" class="invalid-feedback">Please enter message</div>
+                </div>
+                </td>
+            </tr>
+            <tr>
+              <!-- <td></td> -->
+              <td style="margin-top: 25px;">
+                  <button [disabled]="!contactUsForm.valid" 
+                      class="btn btn-success" style="height: 35px;" type="submit">Submit</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>

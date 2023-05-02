@@ -1,0 +1,78 @@
+<div class=workspace>
+  <p (click)="SetToStep(1)"
+     style="margin-left: 50px; margin-top: 20px; background: greenyellow; width: 300px;">Step 1: Select Project to Launch</p>
+  <div style="margin-left: 40px; margin-top: 20px;">
+    <table style="background: blanchedalmond; margin-right:20px; margin-left: 10px;"
+           *ngIf="steps == 1 && selectedProjectId == 0">
+      <tr>
+        <th style="width: 5%">Id</th>
+        <th>Title</th>
+        <th style="width: 50%">Description</th>
+      </tr>
+      <tr *ngFor="let p of userProjects">
+        <td>{{p.id}}</td>
+        <td>{{p.title}}</td>
+        <td>{{p.description}}</td>
+        <td><button type="button" class="btn btn-warning" (click)="chooseProject(p.id)">select</button></td>
+      </tr>
+    </table>
+    <table style="background: blanchedalmond; margin-right:20px;" *ngIf="selectedProjectId > 0">
+      <tr>
+        <td style="width: 5%">{{selectedProject.id}}</td>
+        <td>{{selectedProject.title}}</td>
+        <td style="width: 70%">{{selectedProject.description}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="display: flex; justify-content: flex-start">
+    <p (click)="SetToStep(2)"
+      style="margin-left: 50px; margin-top: 20px; background: greenyellow; width: 300px;"
+        *ngIf="steps >= 2">Step 2: Set Hunter Parameters
+    </p>
+  </div>
+
+  <button *ngIf="steps == 2" type="button"
+          style="margin-left: 40px; margin-top: 1px; float: left;"
+          (click)="AddParameter()">Add Parameter</button>
+  <button *ngIf="steps == 2" type="button"
+          style="margin-left: 40px; margin-top: 1px; float: left;"
+          (click)="SetToStep(3)">Finished Adding</button>
+
+  <div *ngIf="steps == 2" style="background: blanchedalmond; margin-left: 40px; height: 33px; width: 240px;">
+    <table>
+      <tr *ngFor="let p of connectorParms">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.parmType}}</td>
+        <td>{{p.order}}</td>
+        <td>{{p.nestingLevel}}</td>
+        <td>{{p.value}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div (click)="SetToStepAndLaunch(4)"
+    style="margin-left: 50px; margin-top: 20px; background: greenyellow; width: 300px;"
+     *ngIf="steps >= 3">Step 3: Start Hunter Search</div>
+
+  <p (click)="SetToStep(5)"
+    style="margin-left: 50px; margin-top: 25px; background: greenyellow; width: 300px;"
+     *ngIf="steps >= 4">Step 4: Manage Execution</p>
+  <button *ngIf="steps == 4" type="button"
+    style="margin-left: 40px; margin-top: 1px; float: left;"
+    (click)="AddParameter()">Check Progress</button>
+  <button *ngIf="steps == 4" type="button"
+    style="margin-left: 40px; margin-top: 1px; float: left;"
+    (click)="AddParameter()">Show Fitness History</button>
+
+  <p (click)="SetToStep(6)"
+    style="margin-left: 50px; margin-top: 5px; background: greenyellow; width: 300px;"
+     *ngIf="steps >= 5">Step 5: Close gracefully or Immediate Halt</p>
+  <button *ngIf="steps == 5" type="button"
+     style="margin-left: 40px; margin-top: 1px; float: left;"
+     (click)="AddParameter()">Close and Save</button>
+  <button *ngIf="steps == 5" type="button"
+     style="margin-left: 40px; margin-top: 1px; float: left;"
+     (click)="SetToStep(3)">Stop Processing</button>
+</div>
